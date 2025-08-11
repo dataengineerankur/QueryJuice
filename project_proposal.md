@@ -76,12 +76,14 @@ This section explains how the multi-agent pipeline processes natural language qu
 - **Query Execution**: Runs the query against the database
 - **Result Formatting**: Presents data in a user-friendly way
 
-### 🌊 Multi-Agent Architecture
+### 🎯 Core Architecture Overview
 
 ```mermaid
 graph TD
-    U["🎤 User Input<br/>'Find customers with >2 flags'"] --> A
+    %% User Input
+    U["🎤 User Input<br/>Natural Language Query"] --> A
     
+    %% Main Orchestrator
     A["🎯 Orchestrator Agent<br/>Master Coordinator"] --> B
     A --> C
     A --> D
@@ -89,21 +91,25 @@ graph TD
     A --> F
     A --> G
     
-    B["🧠 Query Understanding Agent<br/>Analyzes intent & entities"]
+    %% Agents with Simple Descriptions
+    B["🧠 Query Understanding Agent<br/>Analyzes user intent & entities"]
     C["🔍 Schema Analysis Agent<br/>Maps to database structure"]
-    D["📝 SQL Generation Agent<br/>Creates SQL queries"]
-    E["✅ Query Validation Agent<br/>Ensures security"]
-    F["🚀 Query Execution Agent<br/>Runs queries"]
-    G["📊 Result Formatting Agent<br/>Presents results"]
+    D["📝 SQL Generation Agent<br/>Creates optimized SQL queries"]
+    E["✅ Query Validation Agent<br/>Ensures security & quality"]
+    F["🚀 Query Execution Agent<br/>Runs queries & manages data"]
+    G["📊 Result Formatting Agent<br/>Presents results beautifully"]
     
+    %% Simple Data Flow
     B --> D
     C --> D
     D --> E
     E --> F
     F --> G
     
-    G --> O["📤 Formatted Results<br/>Tables, Charts, Insights"]
+    %% Output
+    G --> O["📤 User Output<br/>Formatted Results"]
     
+    %% Clean Styling
     style A fill:#FF6B6B,stroke:#333,stroke-width:3px,color:#fff
     style B fill:#4ECDC4,stroke:#333,stroke-width:2px,color:#fff
     style C fill:#45B7D1,stroke:#333,stroke-width:2px,color:#fff
@@ -111,7 +117,138 @@ graph TD
     style E fill:#FFEAA7,stroke:#333,stroke-width:2px,color:#333
     style F fill:#DDA0DD,stroke:#333,stroke-width:2px,color:#fff
     style G fill:#98D8C8,stroke:#333,stroke-width:2px,color:#fff
+    
+    style U fill:#FFE165,stroke:#333,stroke-width:2px,color:#333
+    style O fill:#A8E6CF,stroke:#333,stroke-width:2px,color:#333
 ```
+
+### 🎯 Detailed Architecture Flow
+
+```mermaid
+graph TD
+    %% User Input Layer
+    U["🎤 User Input<br/>Natural Language Query<br/>'Find orders from 23rd Oct'"] --> A
+    
+    %% Main Orchestrator
+    A["🎯 Orchestrator Agent<br/>Master Coordinator<br/>Pipeline Management"] --> B
+    A --> C
+    A --> D
+    A --> E
+    A --> F
+    A --> G
+    
+    %% Query Understanding Agent
+    B["🧠 Query Understanding Agent<br/>NLP & Intent Analysis"] --> B1["🔍 Entity Extraction<br/>'orders', 'customers', 'products'"]
+    B --> B2["🎯 Intent Recognition<br/>SELECT, AGGREGATE, FILTER"]
+    B --> B3["📝 Query Type Classification<br/>Simple, Complex, Join"]
+    B --> B4["🔍 Condition Analysis<br/>Dates, Locations, Status"]
+    
+    %% Schema Analysis Agent
+    C["🔍 Schema Analysis Agent<br/>Database Metadata Expert"] --> C1["📋 Table Discovery<br/>Schema Mapping"]
+    C --> C2["🔗 Relationship Analysis<br/>Foreign Keys, Joins"]
+    C --> C3["📊 Column Mapping<br/>Natural Language → Database"]
+    C --> C4["⚡ Performance Insights<br/>Indexes, Constraints"]
+    
+    %% SQL Generation Agent
+    D["📝 SQL Generation Agent<br/>Query Builder & Optimizer"] --> D1["🏗️ Base Query Construction<br/>SELECT, FROM, WHERE"]
+    D --> D2["🔗 Join Strategy<br/>INNER, LEFT, RIGHT Joins"]
+    D --> D3["📊 Aggregation Logic<br/>COUNT, SUM, AVG, GROUP BY"]
+    D --> D4["⚡ Query Optimization<br/>Performance Tuning"]
+    
+    %% Query Validation Agent
+    E["✅ Query Validation Agent<br/>Security & Quality Guardian"] --> E1["🛡️ Security Validation<br/>SQL Injection Prevention"]
+    E --> E2["🔍 Syntax Validation<br/>SQL Grammar Check"]
+    E --> E3["⚡ Performance Analysis<br/>Query Plan Review"]
+    E --> E4["📊 Complexity Assessment<br/>Resource Usage"]
+    
+    %% Query Execution Agent
+    F["🚀 Query Execution Agent<br/>Database Operations Manager"] --> F1["🔌 Connection Management<br/>Pooling & Optimization"]
+    F --> F2["⚡ Query Execution<br/>Timeout & Error Handling"]
+    F --> F3["📊 Result Processing<br/>Data Fetching & Pagination"]
+    F --> F4["📈 Performance Monitoring<br/>Execution Metrics"]
+    
+    %% Result Formatting Agent
+    G["📊 Result Formatting Agent<br/>Data Presentation Expert"] --> G1["📋 Table Formatting<br/>Structured Output"]
+    G --> G2["📈 Chart Generation<br/>Visualizations"]
+    G --> G3["📄 Export Options<br/>CSV, JSON, Excel"]
+    G --> G4["📝 Summary Creation<br/>Insights & Analytics"]
+    
+    %% Data Flow Connections
+    B1 --> C1
+    B2 --> D1
+    B3 --> D2
+    B4 --> D3
+    
+    C1 --> D1
+    C2 --> D2
+    C3 --> D1
+    C4 --> D4
+    
+    D1 --> E1
+    D2 --> E2
+    D3 --> E3
+    D4 --> E4
+    
+    E1 --> F1
+    E2 --> F2
+    E3 --> F3
+    E4 --> F4
+    
+    F1 --> G1
+    F2 --> G2
+    F3 --> G3
+    F4 --> G4
+    
+    %% Final Output
+    G1 --> O["📤 User Output<br/>Formatted Results<br/>Tables, Charts, Insights"]
+    G2 --> O
+    G3 --> O
+    G4 --> O
+    
+    %% Styling for Visual Appeal
+    style A fill:#FF6B6B,stroke:#333,stroke-width:4px,color:#fff
+    style B fill:#4ECDC4,stroke:#333,stroke-width:3px,color:#fff
+    style C fill:#45B7D1,stroke:#333,stroke-width:3px,color:#fff
+    style D fill:#96CEB4,stroke:#333,stroke-width:3px,color:#fff
+    style E fill:#FFEAA7,stroke:#333,stroke-width:3px,color:#333
+    style F fill:#DDA0DD,stroke:#333,stroke-width:3px,color:#fff
+    style G fill:#98D8C8,stroke:#333,stroke-width:3px,color:#fff
+    
+    style U fill:#FFE165,stroke:#333,stroke-width:3px,color:#333
+    style O fill:#A8E6CF,stroke:#333,stroke-width:3px,color:#333
+    
+    %% Sub-agent styling
+    style B1 fill:#E8F4FD,stroke:#333,stroke-width:2px
+    style B2 fill:#E8F4FD,stroke:#333,stroke-width:2px
+    style B3 fill:#E8F4FD,stroke:#333,stroke-width:2px
+    style B4 fill:#E8F4FD,stroke:#333,stroke-width:2px
+    
+    style C1 fill:#E8F8F5,stroke:#333,stroke-width:2px
+    style C2 fill:#E8F8F5,stroke:#333,stroke-width:2px
+    style C3 fill:#E8F8F5,stroke:#333,stroke-width:2px
+    style C4 fill:#E8F8F5,stroke:#333,stroke-width:2px
+    
+    style D1 fill:#FDF2E9,stroke:#333,stroke-width:2px
+    style D2 fill:#FDF2E9,stroke:#333,stroke-width:2px
+    style D3 fill:#FDF2E9,stroke:#333,stroke-width:2px
+    style D4 fill:#FDF2E9,stroke:#333,stroke-width:2px
+    
+    style E1 fill:#FFF2E0,stroke:#333,stroke-width:2px
+    style E2 fill:#FFF2E0,stroke:#333,stroke-width:2px
+    style E3 fill:#FFF2E0,stroke:#333,stroke-width:2px
+    style E4 fill:#FFF2E0,stroke:#333,stroke-width:2px
+    
+    style F1 fill:#E8F5E8,stroke:#333,stroke-width:2px
+    style F2 fill:#E8F5E8,stroke:#333,stroke-width:2px
+    style F3 fill:#E8F5E8,stroke:#333,stroke-width:2px
+    style F4 fill:#E8F5E8,stroke:#333,stroke-width:2px
+    
+    style G1 fill:#F0F8FF,stroke:#333,stroke-width:2px
+    style G2 fill:#F0F8FF,stroke:#333,stroke-width:2px
+    style G3 fill:#F0F8FF,stroke:#333,stroke-width:2px
+    style G4 fill:#F0F8FF,stroke:#333,stroke-width:2px
+```
+
 
 ---
 
