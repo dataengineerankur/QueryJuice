@@ -6,7 +6,7 @@
   <p><em>Transform human questions into executable database queries</em></p>
   
   [![AI Agents](https://img.shields.io/badge/AI-Agents-blue?style=for-the-badge&logo=robot&logoColor=white)](.)
-  [![Text-to-SQL](https://img.shields.io/badge/Text-to-SQL-Conversion-green?style=for-the-badge&logo=database&logoColor=white)](.)
+  [![Text-to-SQL](https://img.shields.io/badge/Text--to--SQL-Conversion-green?style=for-the-badge&logo=sqlite&logoColor=white)](.)
   [![LangChain](https://img.shields.io/badge/LangChain-Framework-yellow?style=for-the-badge&logo=chainlink&logoColor=white)](.)
   [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-red?style=for-the-badge&logo=postgresql&logoColor=white)](.)
 </div>
